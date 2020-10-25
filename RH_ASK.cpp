@@ -197,7 +197,7 @@ void RH_ASK::timerSetup()
     // ST's Arduino Core STM32, https://github.com/stm32duino/Arduino_Core_STM32
     // Declaration of the callback function changed in 1.9. Sigh
  #if (STM32_CORE_VERSION >= 0x01090000)
-    callback_function_t interrupt();
+    void interrupt();
  #else
     void interrupt(HardwareTimer*); // defined below
  #endif
@@ -693,7 +693,7 @@ void TC1_Handler()
 // ST's Arduino Core STM32, https://github.com/stm32duino/Arduino_Core_STM32
 // Declaration of the callback function changed in 1.9
  #if (STM32_CORE_VERSION >= 0x01090000)
-callback_function_t interrupt()
+void interrupt()
  #else
 void interrupt(HardwareTimer*)
  #endif
