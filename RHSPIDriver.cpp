@@ -35,7 +35,7 @@ bool RHSPIDriver::init()
 #if (RH_PLATFORM == RH_PLATFORM_STM32L0) && (defined STM32L082xx || defined STM32L072xx)
     delay(10);
 #else
-    delay(100);
+    //delay(100);
 #endif
     
     return true;
