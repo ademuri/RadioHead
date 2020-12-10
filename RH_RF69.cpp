@@ -345,8 +345,13 @@ bool RH_RF69::sleep()
 {
     if (_mode != RHModeSleep)
     {
-	spiWrite(RH_RF69_REG_01_OPMODE, RH_RF69_OPMODE_MODE_SLEEP);
-	_mode = RHModeSleep;
+        // Work around possible hardware bug where radio consumes ~82uA in
+        // sleep mode, instead of 0.1uA according to datasheet.
+        spiWrite(RH_RF69_REG_5A_TESTPA1, RH_RF69_TESTPA1_NORMAL);
+        spiWrite(RH_RF69_REG_5C_TESTPA2, RH_RF69_TESTPA2_NORMAL);
+
+        spiWrite(RH_RF69_REG_01_OPMODE, RH_RF69_OPMODE_MODE_SLEEP);
+        _mode = RHModeSleep;
     }
     return true;
 }
